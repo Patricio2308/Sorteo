@@ -94,7 +94,8 @@ var playersLista = document.querySelectorAll(".player");
         if(list.length > 0){
             while(getCant() > ganadores.length){
                 var pos:number = Math.floor(Math.random() * list.length );
-                if(!ganadores.includes(list[pos])){
+                ganador = list[pos];
+                if(!ganadores.indexOf(ganador)){
                     ganadores.push(list[pos]);
                     pos++;
                 }    
@@ -115,6 +116,6 @@ var playersLista = document.querySelectorAll(".player");
             
     })
 
-    let list:String[] = [];
+    let list:any[] = [];
 
 console.log(list);
