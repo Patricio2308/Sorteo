@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sorteo</title>
+</head>
+<body>
+    
+    <section class="panel-1">
+
+        <section class="leftSide">
+
+            <section class="participantes">
+                <p class="tituloAdd">Agregar participante</p>
+                <label class="agregarP">
+                    <input id="textEnter" type="text">
+                    <button type="submit" class="addButton">+</button>
+                </label>
+            </section>
+            
+
+            <ul id="lista">
+                <li class="player" style="list-style:none ;">
+                    Participante
+                    <button type="submit" class="delButton">x</button>
+                </li>
+                <li class="player">
+                    Participante 2
+                    <button type="submit" class="delButton">x</button>
+                </li>
+                <li class="player">
+                    Participante 3
+                    <button type="submit" class="delButton">x</button>
+                </li>
+            </ul>
+        
+        </section>
+
+        <section class="rightSide">
+
+            <section class="cantidad">
+                <p>Cantidad de ganadores</p>
+                <br>
+            <form action="" id="radiosWin">
+
+                <label for="cant1">
+                    <input type="radio" class="winners" id="win1" name="cant" value="1" checked> 1    
+                </label>
+                <label for="cant2">
+                    <input type="radio" class="winners" id="win2" name="cant" value="2"> 2   
+                </label>
+                <label for="cant3">
+                    <input type="radio" class="winners" id="win3" name="cant" value="3"> 3    
+                </label>  
+            </form>
+            
+            </section>
+
+            <!-- <section class="winners">
+                <p>El ganador es :</p>
+            </section> -->
+        
+        <button type="submit" class="sorteo">Sortear</button>
+        </section>
+    </section>
+    
+    <script language="javascript" type="text/javascript" src="app.js"></script>
+</body>
+</html>
