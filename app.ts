@@ -10,10 +10,11 @@ var future = function():string {
 const btnAdd:any = document.querySelector(".addButton");
 const input:any = document.getElementById("textEnter");
 const btnDel:any = document.querySelectorAll(".delButton");
-const listPart:any = document.getElementById("lista");
+const listParticipantes:any = document.getElementById("lista");
 const btnSorteo:any = document.querySelector(".sorteo");
 const winners:any = document.querySelectorAll(".winners");
-var playersLista = document.querySelectorAll(".player");
+var sorteoLista = document.querySelectorAll(".player");
+var list:any[] = [];
 
     
     function crearButtonDel() {
@@ -46,12 +47,12 @@ var playersLista = document.querySelectorAll(".player");
     function agregarPlayer() {
         if(input.value.trim() !== ""){
             list.push(crearMayus());
-            /* Alternativo */ /* listPart.innerHTML  = `<li class="player" style="list-style:none ;"> ${input.value} <button type="submit" class="delButton">x</button></li>`; */
-            listPart.appendChild(crearList());
+            /* Alternativo */ /* listParticipantes.innerHTML  = `<li class="player" style="list-style:none ;"> ${input.value} <button type="submit" class="delButton">x</button></li>`; */
+            listParticipantes.appendChild(crearList());
             input.value = null;
-            console.log(listPart);
+            console.log(listParticipantes);
             console.log(btnDel);
-            playersLista = document.querySelectorAll(".player");
+            sorteoLista = document.querySelectorAll(".player");
         }
     }
     /* Ingresa participate al apretar boton */
@@ -69,7 +70,7 @@ var playersLista = document.querySelectorAll(".player");
             let jugador = element.parentNode?.firstChild;
             let lugar = list.indexOf(jugador);
             list.splice(lugar, 1);
-            playersLista = document.querySelectorAll(".player");
+            sorteoLista = document.querySelectorAll(".player");
         })
  
     });
@@ -82,40 +83,37 @@ var playersLista = document.querySelectorAll(".player");
         }
     }
 
-    function ganadores(list) {
+    /* function ganadores(list) {
         const pos:number[] = [];
         var cantGanadores:number = winners.length;
-    }
+    } */
 
-    function puestosGanadores(){
-        var ganadores:any[] = [];
-        var ganador:string;
-        var pos:number = 0;
+    function puestosGanadores(list){
+        let ganadores:string[] = [];
+        let ganador:string;
+        let pos:number = 0;
+        let opcion:number = getCant();
         if(list.length > 0){
-            while(getCant() > ganadores.length){
-                var pos:number = Math.floor(Math.random() * list.length );
+            while(opcion > ganadores.length){
+                pos = Math.floor(Math.random() * list.length );
                 ganador = list[pos];
-                if(!ganadores.indexOf(ganador)){
-                    ganadores.push(list[pos]);
-                    pos++;
+                if(ganadores.indexOf(ganador) == -1){
+                    ganadores.push(ganador);
                 }    
             }
             alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
         } else
-            alert("Faltan participantes")
+            alert("Faltan participantes");
     }
 
     btnSorteo.addEventListener("click", () => {
         list = [];
-        playersLista.forEach( e => {
+        sorteoLista.forEach( e => {
             list.push(e.firstChild?.textContent?.trim()); /* ingresa participantes a la lista, sin espacios laterales en sus nombres */
         })
-        puestosGanadores();
-        console.log(list);
-        
-            
+        puestosGanadores(list);
+        console.log(list);      
     })
 
-    let list:any[] = [];
 
 console.log(list);
