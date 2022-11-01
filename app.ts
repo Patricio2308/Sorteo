@@ -14,7 +14,7 @@ const listParticipantes:any = document.getElementById("lista");
 const btnSorteo:any = document.querySelector(".sorteo");
 const winners:any = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
-const cuadroWinners:any = document.querySelector(".winners");
+const cuadroWinners:any = document.querySelector(".mostrarWinners");
 const fondo:any = document.querySelector(".blurryBack");
 var list:any[] = [];
 
@@ -85,14 +85,13 @@ var list:any[] = [];
         }
     }
 
-    /* function ganadores(list) {
-        const pos:number[] = [];
-        var cantGanadores:number = winners.length;
-    } */
     function mostrarGanadores(ganadores){
-        fondo.setAttribute("display","flex");
-        fondo.style.display = "flex";
-        cuadroWinners.textContent = `"El ganador es "+ ${ganadores[0]} ` ;
+        /* fondo.setAttribute("style","display: flex;"); */
+        /* fondo.style.display = "flex"; */
+        cuadroWinners.textContent = `El ganador es ${ganadores[0]} ` ;
+    }
+    function faltanParticipantes(){
+        cuadroWinners.textContent = `Faltan participantes` ;
     }
 
     function puestosGanadores(list){
@@ -100,6 +99,7 @@ var list:any[] = [];
         let ganador:string;
         let pos:number = 0;
         let opcion:number = getCant();
+        
         if(list.length > 0){
             while(opcion > ganadores.length){
                 pos = Math.floor(Math.random() * list.length );
@@ -109,9 +109,10 @@ var list:any[] = [];
                 }    
             }
             mostrarGanadores(ganadores);
-/*             alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
- */        } else
-            alert("Faltan participantes");
+        } else
+            faltanParticipantes();
+
+        fondo.setAttribute("style","display: flex;"); 
     }
 
     btnSorteo.addEventListener("click", () => {
@@ -119,10 +120,9 @@ var list:any[] = [];
         sorteoLista.forEach( e => {
             list.push(e.firstChild?.textContent?.trim()); /* ingresa participantes a la lista, sin espacios laterales en sus nombres */
         })
-        puestosGanadores(list);
-        console.log(list);      
+        puestosGanadores(list);    
     })
-
+    /* Cancela el cuadro donde muestra a los ganadores */
     fondo.addEventListener("click", () => {
         fondo.style.display = "none";
     })

@@ -12,7 +12,7 @@ var listParticipantes = document.getElementById("lista");
 var btnSorteo = document.querySelector(".sorteo");
 var winners = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
-var cuadroWinners = document.querySelector(".winners");
+var cuadroWinners = document.querySelector(".mostrarWinners");
 var fondo = document.querySelector(".blurryBack");
 var list = [];
 function crearButtonDel() {
@@ -84,9 +84,13 @@ function getCant() {
     var cantGanadores:number = winners.length;
 } */
 function mostrarGanadores(ganadores) {
-    fondo.setAttribute("display", "flex");
-    fondo.style.display = "flex";
-    cuadroWinners.textContent = "\"El ganador es \"+ ".concat(ganadores[0], " ");
+    /* fondo.setAttribute("style","display: flex;"); */
+    /* fondo.style.display = "flex"; */
+    cuadroWinners.textContent = "El ganador es ".concat(ganadores[0], " ");
+}
+function faltanParticipantes() {
+    /* fondo.setAttribute("style","display: flex;"); */
+    cuadroWinners.textContent = "Faltan participantes";
 }
 function puestosGanadores(list) {
     var ganadores = [];
@@ -102,10 +106,10 @@ function puestosGanadores(list) {
             }
         }
         mostrarGanadores(ganadores);
-        /*             alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
-         */ }
+    }
     else
-        alert("Faltan participantes");
+        faltanParticipantes();
+    fondo.setAttribute("style", "display: flex;");
 }
 btnSorteo.addEventListener("click", function () {
     list = [];
