@@ -85,13 +85,23 @@ var list:any[] = [];
         }
     }
 
-    function mostrarGanadores(ganadores){
-        /* fondo.setAttribute("style","display: flex;"); */
-        /* fondo.style.display = "flex"; */
-        cuadroWinners.textContent = `El ganador es ${ganadores[0]} ` ;
-    }
-    function faltanParticipantes(){
-        cuadroWinners.textContent = `Faltan participantes` ;
+    function mostrarOrdenGanadores(ganadores) {
+        switch(ganadores.length){
+            case 1: 
+            cuadroWinners.textContent = `El ganador es "${ganadores[0]}" `;
+            break;
+            case 2: 
+            cuadroWinners.textContent = `El ganador es "${ganadores[0]}", el segundo puesto es para "${ganadores[1]}" `;
+            break;
+            case 3: 
+            cuadroWinners.textContent = `El ganador es "${ganadores[0]}", 
+                                        el segundo puesto es para "${ganadores[1]}" 
+                                        y el tercer puesto es para "${ganadores[2]}" `;
+            break;
+            default:
+            cuadroWinners.textContent = `Faltan participantes` ;
+            break;
+        }
     }
 
     function puestosGanadores(list){
@@ -108,11 +118,10 @@ var list:any[] = [];
                     ganadores.push(ganador);
                 }    
             }
-            mostrarGanadores(ganadores);
-        } else
-            faltanParticipantes();
-
-        fondo.setAttribute("style","display: flex;"); 
+        } 
+        mostrarOrdenGanadores(ganadores);
+        fondo.setAttribute("style","display: flex;");
+        /* fondo.style.display = "flex"; */ 
     }
 
     btnSorteo.addEventListener("click", () => {

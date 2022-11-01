@@ -79,17 +79,28 @@ function getCant() {
             return (cant[i].value);
     }
 }
-/* function ganadores(list) {
-    const pos:number[] = [];
-    var cantGanadores:number = winners.length;
-} */
+function mostrarOrdenGanadores(ganadores) {
+    switch (ganadores.length) {
+        case 1:
+            cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\" ");
+            break;
+        case 2:
+            cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\", el segundo puesto es para \"").concat(ganadores[1], "\" ");
+            break;
+        case 3:
+            cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\", \n                                        el segundo puesto es para \"").concat(ganadores[1], "\" \n                                        el tercer puesto es para \"").concat(ganadores[2], "\" ");
+            break;
+        default:
+            cuadroWinners.textContent = "Faltan participantes";
+            break;
+    }
+}
 function mostrarGanadores(ganadores) {
     /* fondo.setAttribute("style","display: flex;"); */
     /* fondo.style.display = "flex"; */
-    cuadroWinners.textContent = "El ganador es ".concat(ganadores[0], " ");
+    cuadroWinners.textContent = "".concat(mostrarOrdenGanadores(ganadores));
 }
 function faltanParticipantes() {
-    /* fondo.setAttribute("style","display: flex;"); */
     cuadroWinners.textContent = "Faltan participantes";
 }
 function puestosGanadores(list) {
@@ -105,10 +116,9 @@ function puestosGanadores(list) {
                 ganadores.push(ganador);
             }
         }
-        mostrarGanadores(ganadores);
     }
-    else
-        faltanParticipantes();
+    mostrarOrdenGanadores(ganadores);
+    /* faltanParticipantes(); */
     fondo.setAttribute("style", "display: flex;");
 }
 btnSorteo.addEventListener("click", function () {
@@ -118,8 +128,8 @@ btnSorteo.addEventListener("click", function () {
         list.push((_b = (_a = e.firstChild) === null || _a === void 0 ? void 0 : _a.textContent) === null || _b === void 0 ? void 0 : _b.trim()); /* ingresa participantes a la lista, sin espacios laterales en sus nombres */
     });
     puestosGanadores(list);
-    console.log(list);
 });
+/* Cancela el cuadro donde muestra a los ganadores */
 fondo.addEventListener("click", function () {
     fondo.style.display = "none";
 });
