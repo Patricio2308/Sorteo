@@ -12,6 +12,8 @@ var listParticipantes = document.getElementById("lista");
 var btnSorteo = document.querySelector(".sorteo");
 var winners = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
+var cuadroWinners = document.querySelector(".winners");
+var fondo = document.querySelector(".blurryBack");
 var list = [];
 function crearButtonDel() {
     var btnElem = document.createElement("button");
@@ -81,6 +83,11 @@ function getCant() {
     const pos:number[] = [];
     var cantGanadores:number = winners.length;
 } */
+function mostrarGanadores(ganadores) {
+    fondo.setAttribute("display", "flex");
+    fondo.style.display = "flex";
+    cuadroWinners.textContent = "\"El ganador es \"+ ".concat(ganadores[0], " ");
+}
 function puestosGanadores(list) {
     var ganadores = [];
     var ganador;
@@ -89,18 +96,14 @@ function puestosGanadores(list) {
     if (list.length > 0) {
         while (opcion > ganadores.length) {
             pos = Math.floor(Math.random() * list.length);
-            console.log("opcion " + opcion);
-            console.log("cuantos ganadores " + ganadores.length);
             ganador = list[pos];
-            console.log("el ganador esta en gandores " + ganadores.indexOf(list[pos]));
-            console.log("Posicion " + pos);
-            console.log("que hay en la lista " + list);
-            if (ganadores.indexOf(list[pos]) == -1) {
-                ganadores.push(list[pos]);
+            if (ganadores.indexOf(ganador) == -1) {
+                ganadores.push(ganador);
             }
         }
-        alert("El ganador es " + ganadores[0] + " El segundo puesto es para " + ganadores[1] + " El tercer puesto es para " + ganadores[2]);
-    }
+        mostrarGanadores(ganadores);
+        /*             alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
+         */ }
     else
         alert("Faltan participantes");
 }
@@ -112,5 +115,8 @@ btnSorteo.addEventListener("click", function () {
     });
     puestosGanadores(list);
     console.log(list);
+});
+fondo.addEventListener("click", function () {
+    fondo.style.display = "none";
 });
 console.log(list);

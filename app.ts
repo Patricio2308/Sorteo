@@ -14,6 +14,8 @@ const listParticipantes:any = document.getElementById("lista");
 const btnSorteo:any = document.querySelector(".sorteo");
 const winners:any = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
+const cuadroWinners:any = document.querySelector(".winners");
+const fondo:any = document.querySelector(".blurryBack");
 var list:any[] = [];
 
     
@@ -87,6 +89,11 @@ var list:any[] = [];
         const pos:number[] = [];
         var cantGanadores:number = winners.length;
     } */
+    function mostrarGanadores(ganadores){
+        fondo.setAttribute("display","flex");
+        fondo.style.display = "flex";
+        cuadroWinners.textContent = `"El ganador es "+ ${ganadores[0]} ` ;
+    }
 
     function puestosGanadores(list){
         let ganadores:string[] = [];
@@ -101,8 +108,9 @@ var list:any[] = [];
                     ganadores.push(ganador);
                 }    
             }
-            alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
-        } else
+            mostrarGanadores(ganadores);
+/*             alert("El ganador es "+ ganadores[0] + " El segundo puesto es para "+ ganadores[1] + " El tercer puesto es para "+ ganadores[2]);
+ */        } else
             alert("Faltan participantes");
     }
 
@@ -113,6 +121,10 @@ var list:any[] = [];
         })
         puestosGanadores(list);
         console.log(list);      
+    })
+
+    fondo.addEventListener("click", () => {
+        fondo.style.display = "none";
     })
 
 
