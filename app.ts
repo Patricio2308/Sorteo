@@ -12,6 +12,7 @@ const input:any = document.getElementById("textEnter");
 const btnDel:any = document.querySelectorAll(".delButton");
 const listParticipantes:any = document.getElementById("lista");
 const btnSorteo:any = document.querySelector(".sorteo");
+const btnClose:any = document.querySelector(".cancelBtn");
 const winners:any = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
 const cuadroWinners:any = document.querySelector(".mostrarWinners");
@@ -132,7 +133,7 @@ var list:any[] = [];
         puestosGanadores(list);    
     })
     /* Cancela el cuadro donde muestra a los ganadores */
-    fondo.addEventListener("click", () => {
+    btnClose.addEventListener("click", () => {
         fondo.style.display = "none";
     })
 

@@ -6,16 +6,16 @@
 body {
     background-color: rgb(246, 255, 255);
     /* position: relative; */
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.panel-1 {
-    width: 60%;
-    height: 25em;
-    
+.panel {
+    width: 70%;
+    min-width: 560px;
+    height: 65%;
     background-color: rgb(165, 165, 144);
     border: solid   rgb(88, 88, 88);
     border-radius: 5px;
@@ -24,7 +24,7 @@ body {
 }
 .tituloAdd {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.5rem;
     margin-top: 2em;
     margin-bottom: 1em;
 }
@@ -42,13 +42,19 @@ body {
     display: inline-block;
 }
 
+#textEnter {
+    font-size: 1em;
+    width: 250px;
+    height: 30px;
+}
+
 .addButton {
     border-radius: 50%;
-    height: 1.5em;
-    width: 1.5em;
+    height: 1.6em;
+    width: 1.6em;
     font-size: 1em;
+    margin-left: 1rem;
     border: solid thin;
-    vertical-align: middle;
 }
 
 #lista {
@@ -67,8 +73,10 @@ body {
     margin:0 0.5rem 0.5rem 0.5rem;
 }
 .delButton {
-    height: 1.52em;
-    width: 1.5em;
+    height: calc(100% + 2px);
+    width: 1.4em;
+    text-align: center;
+    font-size: 1rem;
     border: solid thin;
     border-radius: 0 10px 10px  0px;
     position: absolute;
@@ -79,7 +87,7 @@ body {
     width: 50%;
     height: 100%;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.5em;
 }
 /* Configuracion */
 .rightSide {
@@ -88,7 +96,7 @@ body {
     position: relative;
     height: 100%;
     border-left: solid;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .cantidad {
     margin-top: 2em;
@@ -100,10 +108,11 @@ label {
 }
 .sorteo {
     margin-top: 1em;
-    position: absolute;
     width: 10em;
     height: 8%;
+    font-size: medium;
     border-radius: 10px; 
+    position: absolute;
     bottom: 1em;
     left: calc( (100% - 10em) / 2);
 }
@@ -119,12 +128,31 @@ label {
     background-color: rgba(14, 15, 15, 0.781);
     display: none;
 }
+#winnerCounter{
+    height: 40%;
+    width: 50%;
+    position: relative;
+    border: thick solid;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(235, 235, 235);
+    z-index: 1;
+}
+.cancelBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+}
 .mostrarWinners {
     height: 40%;
     width: 50%;
     padding: 15px;
     font-size: 20px;
-    border: thick solid;
     margin: auto;
     display: flex;
     text-align: center;

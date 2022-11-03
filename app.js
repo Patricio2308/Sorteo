@@ -10,6 +10,7 @@ var input = document.getElementById("textEnter");
 var btnDel = document.querySelectorAll(".delButton");
 var listParticipantes = document.getElementById("lista");
 var btnSorteo = document.querySelector(".sorteo");
+var btnClose = document.querySelector(".cancelBtn");
 var winners = document.querySelectorAll(".winners");
 var sorteoLista = document.querySelectorAll(".player");
 var cuadroWinners = document.querySelector(".mostrarWinners");
@@ -88,20 +89,12 @@ function mostrarOrdenGanadores(ganadores) {
             cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\", el segundo puesto es para \"").concat(ganadores[1], "\" ");
             break;
         case 3:
-            cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\", \n                                        el segundo puesto es para \"").concat(ganadores[1], "\" \n                                        el tercer puesto es para \"").concat(ganadores[2], "\" ");
+            cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\", \n                                        el segundo puesto es para \"").concat(ganadores[1], "\" \n                                        y el tercer puesto es para \"").concat(ganadores[2], "\" ");
             break;
         default:
             cuadroWinners.textContent = "Faltan participantes";
             break;
     }
-}
-function mostrarGanadores(ganadores) {
-    /* fondo.setAttribute("style","display: flex;"); */
-    /* fondo.style.display = "flex"; */
-    cuadroWinners.textContent = "".concat(mostrarOrdenGanadores(ganadores));
-}
-function faltanParticipantes() {
-    cuadroWinners.textContent = "Faltan participantes";
 }
 function puestosGanadores(list) {
     var ganadores = [];
@@ -118,8 +111,8 @@ function puestosGanadores(list) {
         }
     }
     mostrarOrdenGanadores(ganadores);
-    /* faltanParticipantes(); */
     fondo.setAttribute("style", "display: flex;");
+    /* fondo.style.display = "flex"; */
 }
 btnSorteo.addEventListener("click", function () {
     list = [];
@@ -130,7 +123,7 @@ btnSorteo.addEventListener("click", function () {
     puestosGanadores(list);
 });
 /* Cancela el cuadro donde muestra a los ganadores */
-fondo.addEventListener("click", function () {
+btnClose.addEventListener("click", function () {
     fondo.style.display = "none";
 });
 console.log(list);
