@@ -5,7 +5,6 @@
 
 body {
     background-color: rgb(246, 255, 255);
-    /* position: relative; */
     height: 100vh;
     display: flex;
     align-items: center;
@@ -40,6 +39,8 @@ body {
 
 .agregarP {
     display: inline-block;
+    margin: auto;
+    margin-bottom: 1em;
 }
 
 #textEnter {
@@ -53,7 +54,8 @@ body {
     height: 1.6em;
     width: 1.6em;
     font-size: 1em;
-    margin-left: 1rem;
+    margin-top: 10px;
+   /*  margin-left: 1rem; */
     border: solid thin;
 }
 
@@ -84,12 +86,17 @@ body {
 .leftSide {
     width: 50%;
     height: 100%;
+    padding: 1rem;
     text-align: center;
     font-size: 1.5em;
 }
 /* Configuracion */
 .rightSide {
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
     text-align: center;
     position: relative;
     height: 100%;
@@ -107,14 +114,13 @@ label {
 .boton {
     margin: 1em 1em;
     width: 10em;
-    height: 8%;
+    height: 3em;
     font-size: medium;
     border-radius: 10px; 
-    display: inline;
-    position: relative;
-    bottom: -14rem;
 }
-
+.botonera {
+    margin-bottom: 1em;
+}
 #radiosWin {
     display: flex;
     justify-content: center;
@@ -160,3 +166,9 @@ label {
     z-index: 2;
 }
 
+@media screen and (max-height: 550px){
+    .panel {
+        height: 100%;
+        width: 100%;
+    }
+} 
