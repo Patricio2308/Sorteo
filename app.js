@@ -10,8 +10,9 @@ var input = document.getElementById("textEnter");
 var btnDel = document.querySelectorAll(".delButton");
 var listParticipantes = document.getElementById("lista");
 var btnSorteo = document.querySelector(".sorteo");
+var btnReset = document.querySelector(".reset");
 var btnClose = document.querySelector(".cancelBtn");
-var winners = document.querySelectorAll(".winners");
+/* const winners:any = document.querySelectorAll(".winners"); */
 var sorteoLista = document.querySelectorAll(".player");
 var cuadroWinners = document.querySelector(".mostrarWinners");
 var fondo = document.querySelector(".blurryBack");
@@ -81,6 +82,8 @@ function getCant() {
     }
 }
 function mostrarOrdenGanadores(ganadores) {
+    console.log("tamaño ganadores " + ganadores.length);
+    console.log("el primero " + ganadores[0]);
     switch (ganadores.length) {
         case 1:
             cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\" ");
@@ -99,9 +102,11 @@ function mostrarOrdenGanadores(ganadores) {
 function puestosGanadores(list) {
     var ganadores = [];
     var ganador;
-    var pos = 0;
+    var pos;
     var opcion = getCant();
-    if (list.length > 0) {
+    ganadores = [];
+    if (list.length > 0 && list.length >= opcion) {
+        console.log("dentro del sorteo");
         while (opcion > ganadores.length) {
             pos = Math.floor(Math.random() * list.length);
             ganador = list[pos];
@@ -109,8 +114,10 @@ function puestosGanadores(list) {
                 ganadores.push(ganador);
             }
         }
+        mostrarOrdenGanadores(ganadores);
     }
-    mostrarOrdenGanadores(ganadores);
+    else
+        cuadroWinners.textContent = "Faltan participantes";
     fondo.setAttribute("style", "display: flex;");
     /* fondo.style.display = "flex"; */
 }
@@ -121,6 +128,11 @@ btnSorteo.addEventListener("click", function () {
         list.push((_b = (_a = e.firstChild) === null || _a === void 0 ? void 0 : _a.textContent) === null || _b === void 0 ? void 0 : _b.trim()); /* ingresa participantes a la lista, sin espacios laterales en sus nombres */
     });
     puestosGanadores(list);
+});
+/* Elimina y actualiza la lista de los participantes */
+btnReset.addEventListener("click", function () {
+    listParticipantes.innerHTML = "";
+    sorteoLista = document.querySelectorAll(".player");
 });
 /* Cancela el cuadro donde muestra a los ganadores */
 btnClose.addEventListener("click", function () {
