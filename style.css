@@ -172,3 +172,8 @@ label {
         width: 100%;
     }
 } 
+@media screen and (max-width: 1550px){
+    .panel {
+        width: 80%;
+    }
+} 

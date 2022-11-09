@@ -14,11 +14,10 @@ const listParticipantes:any = document.getElementById("lista");
 const btnSorteo:any = document.querySelector(".sorteo");
 const btnReset:any = document.querySelector(".reset");
 const btnClose:any = document.querySelector(".cancelBtn");
-/* const winners:any = document.querySelectorAll(".winners"); */
 let sorteoLista = document.querySelectorAll(".player");
 const cuadroWinners:any = document.querySelector(".mostrarWinners");
 const fondo:any = document.querySelector(".blurryBack");
-var list:any[] = [];
+let list:any[] = [];
 
 
     
@@ -89,8 +88,6 @@ var list:any[] = [];
     }
 
     function mostrarOrdenGanadores(ganadores) {
-        console.log("tamaño ganadores " + ganadores.length);
-        console.log("el primero " + ganadores[0]);
         switch(ganadores.length){
             case 1: 
             cuadroWinners.textContent = `El ganador es "${ganadores[0]}" `;
@@ -117,7 +114,6 @@ var list:any[] = [];
         ganadores = [];
         
         if(list.length > 0 && list.length >= opcion){
-            console.log("dentro del sorteo");
             while(opcion > ganadores.length){
                 pos = Math.floor(Math.random() * list.length );
                 ganador = list[pos];
@@ -138,7 +134,15 @@ var list:any[] = [];
             list.push(e.firstChild?.textContent?.trim()); /* ingresa participantes a la lista, sin espacios laterales en sus nombres */
         })
         puestosGanadores(list);    
-    })
+    });
+    
+    btnClose.addEventListener('keydown', (event) => {
+        if(event.keyCode === 27){
+            console.log("CODIGO 27");
+            fondo.style.visibility = "hidden";
+        }
+    });
+
     /* Elimina y actualiza la lista de los participantes */
     btnReset.addEventListener("click", () => {
         listParticipantes.innerHTML = "";
@@ -146,8 +150,10 @@ var list:any[] = [];
     })
     /* Cancela el cuadro donde muestra a los ganadores */
     btnClose.addEventListener("click", () => {
-        fondo.style.display = "none";
+            fondo.style.display = "none";
     })
-
-
-console.log(list);
+    fondo.addEventListener("click", (event) => {
+        if(event.target ===  fondo){
+            fondo.style.display = "none";
+        }
+    })

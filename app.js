@@ -12,7 +12,6 @@ var listParticipantes = document.getElementById("lista");
 var btnSorteo = document.querySelector(".sorteo");
 var btnReset = document.querySelector(".reset");
 var btnClose = document.querySelector(".cancelBtn");
-/* const winners:any = document.querySelectorAll(".winners"); */
 var sorteoLista = document.querySelectorAll(".player");
 var cuadroWinners = document.querySelector(".mostrarWinners");
 var fondo = document.querySelector(".blurryBack");
@@ -82,8 +81,6 @@ function getCant() {
     }
 }
 function mostrarOrdenGanadores(ganadores) {
-    console.log("tamaño ganadores " + ganadores.length);
-    console.log("el primero " + ganadores[0]);
     switch (ganadores.length) {
         case 1:
             cuadroWinners.textContent = "El ganador es \"".concat(ganadores[0], "\" ");
@@ -106,7 +103,6 @@ function puestosGanadores(list) {
     var opcion = getCant();
     ganadores = [];
     if (list.length > 0 && list.length >= opcion) {
-        console.log("dentro del sorteo");
         while (opcion > ganadores.length) {
             pos = Math.floor(Math.random() * list.length);
             ganador = list[pos];
@@ -129,13 +125,24 @@ btnSorteo.addEventListener("click", function () {
     });
     puestosGanadores(list);
 });
+btnClose.addEventListener('keydown', function (event) {
+    if (event.keyCode === 27) {
+        console.log("CODIGO 27");
+        fondo.style.visibility = "hidden";
+    }
+});
 /* Elimina y actualiza la lista de los participantes */
 btnReset.addEventListener("click", function () {
     listParticipantes.innerHTML = "";
     sorteoLista = document.querySelectorAll(".player");
 });
 /* Cancela el cuadro donde muestra a los ganadores */
-btnClose.addEventListener("click", function () {
+btnClose.addEventListener("click", function (event) {
     fondo.style.display = "none";
 });
-console.log(list);
+fondo.addEventListener("click", function (event) {
+    console.log(event.target);
+    if (event.target === fondo) {
+        fondo.style.display = "none";
+    }
+});
