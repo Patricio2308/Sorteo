@@ -70,10 +70,10 @@ let list:any[] = [];
     /* Elimina participate al apretar boton */
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
-            element.parentNode?.remove();
             let jugador = element.parentNode?.firstChild;
             let lugar = list.indexOf(jugador);
             list.splice(lugar, 1);
+            element.parentNode?.remove();
             sorteoLista = document.querySelectorAll(".player");
         })
  
@@ -143,10 +143,26 @@ let list:any[] = [];
         }
     });
 
-    /* Elimina y actualiza la lista de los participantes */
+    const btnAcceptReset = document.getElementById("acceptReset");
+    const btnCancelReset = document.getElementById("cancelReset");
+    const cuadroReset = document.querySelector("#askReset");
+    /* Se pregunta antes de eliminar y actualizar la lista de los participantes */
     btnReset.addEventListener("click", () => {
-        listParticipantes.innerHTML = "";
-        sorteoLista = document.querySelectorAll(".player");
+        cuadroReset!.setAttribute("style","position: fixed; display: flex; flex-direction: column; justify-content: space-around;");
+    })
+    /* Cancelar el reset */
+    btnCancelReset!.addEventListener("click", () => {
+        cuadroReset?.setAttribute("style","display: none;");
+    })
+    /* Aceptar el reset, tiene un pequeño delay entre que acepta y resetea */
+    btnAcceptReset!.addEventListener("click", () => {
+        setTimeout(
+            () => {
+                listParticipantes.innerHTML = "";
+                sorteoLista = document.querySelectorAll(".player");
+            }
+            ,200);
+        cuadroReset?.setAttribute("style","display: none;");
     })
     /* Cancela el cuadro donde muestra a los ganadores */
     btnClose.addEventListener("click", () => {

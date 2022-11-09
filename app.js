@@ -66,10 +66,10 @@ input.addEventListener('keypress', function (event) {
 btnDel.forEach(function (element) {
     element.addEventListener("click", function () {
         var _a, _b;
-        (_a = element.parentNode) === null || _a === void 0 ? void 0 : _a.remove();
-        var jugador = (_b = element.parentNode) === null || _b === void 0 ? void 0 : _b.firstChild;
+        var jugador = (_a = element.parentNode) === null || _a === void 0 ? void 0 : _a.firstChild;
         var lugar = list.indexOf(jugador);
         list.splice(lugar, 1);
+        (_b = element.parentNode) === null || _b === void 0 ? void 0 : _b.remove();
         sorteoLista = document.querySelectorAll(".player");
     });
 });
@@ -131,17 +131,30 @@ btnClose.addEventListener('keydown', function (event) {
         fondo.style.visibility = "hidden";
     }
 });
-/* Elimina y actualiza la lista de los participantes */
+var btnAcceptReset = document.getElementById("acceptReset");
+var btnCancelReset = document.getElementById("cancelReset");
+var cuadroReset = document.querySelector("#askReset");
+/* Se pregunta antes de eliminar y actualizar la lista de los participantes */
 btnReset.addEventListener("click", function () {
-    listParticipantes.innerHTML = "";
-    sorteoLista = document.querySelectorAll(".player");
+    cuadroReset.setAttribute("style", "position: fixed; display: flex; flex-direction: column; justify-content: space-around;");
+});
+/* Cancelar el reset */
+btnCancelReset.addEventListener("click", function () {
+    cuadroReset === null || cuadroReset === void 0 ? void 0 : cuadroReset.setAttribute("style", "display: none;");
+});
+/* Aceptar el reset, tiene un pequeño delay entre que acepta y resetea */
+btnAcceptReset.addEventListener("click", function () {
+    setTimeout(function () {
+        listParticipantes.innerHTML = "";
+        sorteoLista = document.querySelectorAll(".player");
+    }, 200);
+    cuadroReset === null || cuadroReset === void 0 ? void 0 : cuadroReset.setAttribute("style", "display: none;");
 });
 /* Cancela el cuadro donde muestra a los ganadores */
-btnClose.addEventListener("click", function (event) {
+btnClose.addEventListener("click", function () {
     fondo.style.display = "none";
 });
 fondo.addEventListener("click", function (event) {
-    console.log(event.target);
     if (event.target === fondo) {
         fondo.style.display = "none";
     }
